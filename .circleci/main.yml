@@ -2,6 +2,5 @@
 - name: Exercise for setting up a web server in an EC2
   hosts: all
   user: ubuntu
-  gather_facts: no
   roles:
   - setup
