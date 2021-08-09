@@ -15,7 +15,7 @@ jobs:
       - run:
           name: Configure server
           command: |
-            sudo ansible-playbook .circleci/main.yml -i .circleci/inventory.txt
+             ansible-playbook .circleci/main.yml -i .circleci/inventory.txt
 
 workflows:
   my_workflow:
