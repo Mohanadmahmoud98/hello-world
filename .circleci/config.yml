@@ -12,7 +12,6 @@ jobs:
             aws cloudformation deploy \
               --template-file .circleci/template.yml \
               --stack-name my-stack \
-              --region=us-east-1
 workflows:
   my_workflow:
     jobs:
