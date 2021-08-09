@@ -1,23 +1,24 @@
 version: 2.1
 
 jobs:
-  configure_infrastructures:
-    docker:
-      - image: python:3.7-alpine3.11
-    steps:
-      - checkout
-      - add_ssh_keys:
-          fingerprints: ["26:2f:64:21:06:3d:17:e9:59:cc:f2:6f:52:62:50:80"] # You can get this ID in the section where you registered the SSH Key
-      - run:
-          name: Install dependencies
-          command: |
-            apk add --update ansible # install the dependencies needed for your playbook
-      - run:
-          name: Configure server
-          command: |
-             ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook .circleci/main.yml -i .circleci/inventory.txt
+  smoke_test:
+      docker:
+        - image: alpine:latest
+      steps:
+        - run: apk add --update curl
+        - run:
+            name: smoke test.
+            command: |
+              URL="https://blog.udacity.com/"
+              if curl -s --head ${URL} # test if blog.udacity. com exists
+              then
+               return 0
+              else
+               return 1
+              fi
 
 workflows:
   my_workflow:
     jobs:
-      - configure_infrastructures
+      - smoke_test
+         
