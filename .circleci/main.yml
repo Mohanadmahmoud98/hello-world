@@ -1,6 +1,6 @@
 ---
 - name: Exercise for setting up a web server in an EC2
-  hosts: 52-87-152-186
+  hosts: all
   user: ubuntu
   roles:
   - setup
